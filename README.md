@@ -2,6 +2,8 @@
 
 Một món quà Trung Thu tiếng Việt: cuộn qua sáu chương trong một cung trăng procedural, gặp Cuội–Hằng, đi qua phố đèn lồng, mở những khung kỷ niệm placeholder và đọc lá thư cuối.
 
+**Live:** https://salyys1.github.io/moonlit-midautumn-gift/
+
 ## Chạy local
 
 ```bash

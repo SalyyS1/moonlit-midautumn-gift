@@ -2,6 +2,8 @@
 
 The `main` branch is the source of truth. A successful push runs `.github/workflows/deploy-pages.yml`, builds with the repository base path, and deploys `dist/` to GitHub Pages.
 
+Current release: https://salyys1.github.io/moonlit-midautumn-gift/
+
 ## Verify a release
 
 - Check the Actions run is green.
