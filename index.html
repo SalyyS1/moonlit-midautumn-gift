@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080b24" />
+    <meta name="description" content="Đêm trăng chỉ có hai đứa mình — một món quà Trung Thu nhỏ." />
+    <title>Đêm trăng chỉ có hai đứa mình</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#story">Bỏ qua phần chuyển động</a>
+    <div id="app">
+      <canvas id="moon-canvas" aria-hidden="true"></canvas>
+      <div class="webgl-fallback" id="webgl-fallback" hidden>
+        <p>Thiết bị này không bật được chuyển động 3D.</p>
+        <p>Bạn vẫn có thể đọc trọn câu chuyện và mở lá thư ở cuối trang.</p>
+      </div>
+      <div class="grain" aria-hidden="true"></div>
+      <header class="topbar">
+        <a class="brand" href="#story" aria-label="Về đầu câu chuyện">
+          <span class="brand-mark" aria-hidden="true">✦</span>
+          <span>trăng của hai đứa mình</span>
+        </a>
+        <div class="top-actions">
+          <span class="progress-readout" id="progress-readout">01 / 06</span>
+          <button class="sound-button" id="sound-button" type="button" aria-pressed="false">Âm thanh tắt</button>
+        </div>
+      </header>
+      <main id="story" tabindex="-1">
+        <div class="story-track" id="story-track" aria-hidden="true"></div>
+        <section class="copy-layer" aria-live="polite">
+          <div class="chapter-copy" id="chapter-copy"></div>
+          <div class="scroll-cue" id="scroll-cue"><span>cuộn để bay vào đêm trăng</span><i aria-hidden="true"></i></div>
+        </section>
+        <nav class="chapter-nav" id="chapter-nav" aria-label="Các chương trong câu chuyện"></nav>
+        <noscript>
+          <div class="noscript-story">
+            <h1>Đêm trăng chỉ có hai đứa mình</h1>
+            <p>Hãy bật JavaScript để đi qua sáu chương của món quà Trung Thu.</p>
+          </div>
+        </noscript>
+      </main>
+      <div class="letter-backdrop" id="letter-backdrop" hidden>
+        <section class="letter-modal" role="dialog" aria-modal="true" aria-labelledby="letter-title">
+          <button class="letter-close" id="letter-close" type="button" aria-label="Đóng lá thư">×</button>
+          <p class="letter-kicker">thư gửi từ cung trăng</p>
+          <h2 id="letter-title">Gửi [tên em],</h2>
+          <div class="letter-body">
+            <p>Anh không cần một cung trăng thật.</p>
+            <p>Chỉ cần mỗi mùa trăng sau này, người đi cạnh anh vẫn là em.</p>
+            <p>Cảm ơn em vì đã xuất hiện trong cuộc đời anh.</p>
+          </div>
+          <p class="letter-sign">— [tên anh]</p>
+          <button class="letter-action" id="letter-action" type="button">Giữ lời hẹn này nhé</button>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
