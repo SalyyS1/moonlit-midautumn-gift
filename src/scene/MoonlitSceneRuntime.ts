@@ -41,7 +41,7 @@ export class MoonlitSceneRuntime {
     this.camera.position.copy(this.anchors[0]);
   }
   resize = () => { const w=this.renderer.domElement.clientWidth||innerWidth,h=this.renderer.domElement.clientHeight||innerHeight; this.camera.aspect=w/h; this.camera.updateProjectionMatrix(); this.renderer.setSize(w,h,false); };
-  setProgress(progress: number, _sceneIndex?: number, _localProgress?: number) { const p=Math.max(0,Math.min(1,progress)); const scaled=p*(this.anchors.length-1), i=Math.min(this.anchors.length-2,Math.floor(scaled)), t=scaled-i; this.camera.position.lerpVectors(this.anchors[i],this.anchors[i+1],this.reduced?Math.round(t):t); this.camera.lookAt(this.lookAt); this.root.rotation.y = (p-.5)*.08; }
+  setProgress(progress: number, _sceneIndex?: number, _localProgress?: number) { const p=Math.max(0,Math.min(1,progress)); if (this.reduced) { this.camera.position.copy(this.anchors[0]); this.camera.lookAt(this.lookAt); return; } const scaled=p*(this.anchors.length-1), i=Math.min(this.anchors.length-2,Math.floor(scaled)), t=scaled-i; this.camera.position.lerpVectors(this.anchors[i],this.anchors[i+1],t); this.camera.lookAt(this.lookAt); this.root.rotation.y = (p-.5)*.08; }
   private render = () => { this.renderer.render(this.scene,this.camera); this.raf=requestAnimationFrame(this.render); };
   dispose() { cancelAnimationFrame(this.raf); removeEventListener('resize',this.resize); this.renderer.dispose(); this.scene.clear(); }
 }
