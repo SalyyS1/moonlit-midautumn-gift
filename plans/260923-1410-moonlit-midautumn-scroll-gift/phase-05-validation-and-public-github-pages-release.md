@@ -1,7 +1,7 @@
 ---
 phase: 5
 title: "Validation and public GitHub Pages release"
-status: pending
+status: completed
 priority: P1
 effort: "5h"
 dependencies: [4]
@@ -56,3 +56,4 @@ GitHub Actions triggers on pushes to main and manual dispatch. Job uses pinned N
 ## Rollback
 
 Revert `main` to previous known-good commit and let Actions redeploy. For workflow-level outage, restore prior workflow from Git history and rerun deployment; previous Pages artifact remains current until a new successful deploy.
+

@@ -1,7 +1,7 @@
 ---
 phase: 4
 title: "Gift UI, content, and accessibility"
-status: pending
+status: completed
 priority: P2
 effort: "4h"
 dependencies: [3]
@@ -53,3 +53,4 @@ Keep names, chapter copy, memory dates/captions/images in one typed local conten
 ## Rollback
 
 Turn off optional sound and motion effects while keeping semantic HTML scenes and letter. Content remains independent of the renderer.
+

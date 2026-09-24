@@ -1,7 +1,7 @@
 ---
 phase: 3
 title: "Scroll timeline and six scenes"
-status: pending
+status: completed
 priority: P1
 effort: "7h"
 dependencies: [1, 2]
@@ -52,3 +52,4 @@ Implement a scroll-scrubbed Three.js story timeline from the full moon to the fi
 ## Rollback
 
 Disable 3D timeline and render six semantic chapter sections with static illustrations; retain content and navigation.
+

@@ -1,7 +1,7 @@
 ---
 phase: 2
 title: "Art direction and 3D diorama source"
-status: pending
+status: completed
 priority: P1
 effort: "5h"
 dependencies: [1]
@@ -52,3 +52,4 @@ Art source files are authoring inputs; exported GLB/optimized textures or proced
 ## Rollback
 
 Revert to procedural geometry and static poster scenes; preserve the asset mapping interface so story flow remains intact.
+

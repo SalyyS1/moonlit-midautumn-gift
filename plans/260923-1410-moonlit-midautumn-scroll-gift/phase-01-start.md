@@ -1,7 +1,7 @@
 ---
 phase: 1
 title: "Foundation and engine decision"
-status: pending
+status: completed
 priority: P1
 effort: "3h"
 dependencies: []
@@ -51,3 +51,4 @@ Browser scroll events (passive) or an animation-frame sampler produce clamped pr
 ## Rollback
 
 Remove the experimental upstream dependency or scene runtime and return to the minimal static scaffold; no user data or migrations exist.
+

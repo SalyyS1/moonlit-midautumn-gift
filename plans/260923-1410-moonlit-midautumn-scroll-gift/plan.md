@@ -1,7 +1,7 @@
 ---
 title: "Đêm trăng chỉ có hai đứa mình"
 description: "Web quà Trung Thu lãng mạn gồm sáu cảnh scroll cinematic, đăng public trên GitHub Pages."
-status: pending
+status: completed
 priority: P1
 effort: 2d
 branch: ""
@@ -86,7 +86,7 @@ Các phase làm tuần tự, mỗi phase sở hữu một vùng file: Phase 1 s�
 ## Câu hỏi còn mở
 
 - Tên/ảnh/ngày cá nhân vẫn là placeholder cho tới khi được cung cấp; không chặn bản đầu.
-- Chưa rõ GitHub account đích/tên repo. Có thể làm và kiểm tra local trước; để push public và bật Pages cần danh tính GitHub đã xác thực cùng tên repo khả dụng. Dùng remote có sẵn nếu phù hợp; nếu chưa có thì xác định account/tên trước khi tạo repo public.
+- Không còn câu hỏi phát hành: repo đã public trên `SalyyS1/moonlit-midautumn-gift`, Pages đã bật bằng workflow.
 
 ## Tham khảo
 
@@ -94,3 +94,4 @@ Các phase làm tuần tự, mỗi phase sở hữu một vùng file: Phase 1 s�
 - [GitHub Pages với Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) — tham khảo workflow static deploy.
 
 <!-- slug: moonlit-midautumn-scroll-gift -->
+
