@@ -2,3 +2,9 @@ node_modules/
 dist/
 .DS_Store
 *.local
+.chrome*/
+.headless/
+work/
+ui-snapshot.png
+__pycache__/
+*.blend1

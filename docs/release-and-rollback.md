@@ -1,16 +1,19 @@
 # Release and rollback
 
-The `main` branch is the source of truth. A successful push runs `.github/workflows/deploy-pages.yml`, builds with the repository base path, and deploys `dist/` to GitHub Pages.
+Publish only after the visual contract, automated checks and target-desktop performance gates pass. The [art contract](true-3d-art-contract.md) defines acceptance; a local build is not proof that the same artifact is live.
 
-Current release: https://salyys1.github.io/moonlit-midautumn-gift/
+## Validation owners
 
-## Verify a release
+[Package scripts](../package.json) own the local verification commands. The [Pages workflow](../.github/workflows/deploy-pages.yml) owns CI checks, branch triggers, repository base path and deployment configuration.
 
-- Check the Actions run is green.
-- Open `https://<owner>.github.io/<repository>/` directly and refresh once.
-- Scroll through all six chapters, open the letter, and test the sound button after a click.
-- Check the page with `prefers-reduced-motion` enabled and with a narrow viewport.
+The [browser runner](../scripts/capture-progress.mjs) uses a production build under the repository base path. Install its isolated dependency with `npm install --prefix work/browser-validation playwright`; provide `CHROME_PATH` for a browser outside the script's default Windows Chrome location. `PLAYWRIGHT_MODULE_PATH` can select an existing Playwright module.
 
-## Roll back
+Run `npm run test:browser -- --release` for strict functional and performance gating. The command without `--release` is diagnostic: inspect its report before making a release decision. Local browser artifacts belong under the runner's ignored `work/` output, not evergreen documentation.
 
-Revert the bad commit on `main` and push. GitHub Pages will retain the last successful artifact until the new workflow finishes. If a workflow change caused the failure, restore the previous workflow from Git history and rerun it.
+## Publish and verify
+
+Review the exact changes and public media before publishing to `main`. Inspect the resulting Actions run and served artifact, then verify the deployed repository URL, direct refresh, asset requests, story navigation and letter. Record the release commit and evidence in a scoped release record; do not infer availability from the workflow file.
+
+## Rollback
+
+The [scene facade](../src/scene/index.ts) owns the build-time `VITE_SCENE_MODE=procedural` option used during migration. For a published regression, revert the release commit on `main` and verify the replacement deployment through the same workflow. Retain a known-good release commit until the new artifact is verified.

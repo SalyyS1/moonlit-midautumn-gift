@@ -6,6 +6,8 @@ status: complete
 
 # Phát hành Đêm trăng chỉ có hai đứa mình
 
+Historical scope: the procedural release described below. This record does not establish the deployment or visual acceptance of the GLB rebuild; its past live checks were not rerun during the rebuild.
+
 ## Context
 
 Workspace greenfield, concept đã được duyệt: web quà Trung Thu desktop-first, sáu cảnh, placeholder cho dữ liệu cá nhân, repo public và GitHub Pages.

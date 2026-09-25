@@ -6,36 +6,38 @@ A personal Vietnamese Mid-Autumn gift website. The recipient scrolls through a m
 
 ## Approved concept and six-scene storyboard
 
+This table records the intended experience, not completed animation or visual approval. The executable owners are routed from the [art contract](true-3d-art-contract.md).
+
 | # | Chapter | Visual | On-screen copy |
 |---|---|---|---|
-| 1 | Trăng gọi tên em | Full moon among stars, soft clouds, small lanterns | “Tối nay, anh muốn đưa em đến một nơi rất đặc biệt.” |
-| 2 | Cánh cửa trên cung trăng | Lunar garden, rabbit and lantern gate | “Nếu em nghe thấy tiếng chuông, hãy đi theo ánh sáng nhé.” |
-| 3 | Cuội và Hằng kể chuyện | Cuội beneath the banyan tree; Hằng beside a moonlit lake | “Cuội có cây đa. Chị Hằng có cung trăng. Còn anh có một người anh luôn muốn ở bên.” |
-| 4 | Rước đèn cùng nhau | Two silhouettes walking through a lantern street | “Anh muốn cùng em đi qua thật nhiều mùa trăng nữa.” |
-| 5 | Những điều anh nhớ | Three lanterns unfold into personal memory frames | `[Ảnh kỷ niệm]` · `[Ngày / địa điểm]` · `[Một câu chuyện ngắn]` |
-| 6 | Lời hẹn dưới trăng | Couple memory-heart beneath a large moon; letter reveal | “Chúc em một mùa Trung Thu thật dịu dàng. Cảm ơn em vì đã xuất hiện trong cuộc đời anh.” |
+| 1 | Trăng gọi tên em | Full moon among stars, soft clouds, small lanterns | “Đêm nay, trăng nghiêng qua vai em.” |
+| 2 | Cánh cửa trên cung trăng | Lunar garden, rabbit and lantern gate | “Nếu nghe tiếng chuông, cứ bước theo ánh sáng.” |
+| 3 | Cuội và Hằng kể chuyện | Cuội beneath the banyan tree; Hằng beside a moonlit lake | “Cuội giữ bóng đa. Hằng giữ vầng trăng.” |
+| 4 | Rước đèn cùng nhau | Two silhouettes walking through a lantern street | “Đi chậm thôi, để đèn còn kịp soi tay mình.” |
+| 5 | Những điều anh nhớ | Lanterns, fire and a quiet pause beneath the moon | “Có những điều chẳng cần treo lên khung ảnh.” |
+| 6 | Lời hẹn dưới trăng | Letter rising from the moonlit stage and opening by itself | “Đêm đẹp nhất là đêm có người để nhớ.” |
 
-Final letter placeholder:
+Final letter:
 
-> `[Tên em],\nAnh không cần một cung trăng thật.\nChỉ cần mỗi mùa trăng sau này, người đi cạnh anh vẫn là em.\nTrung Thu vui vẻ nhé, người anh thương.`
+> `Gửi em\nAnh không cần một cung trăng thật.\nChỉ cần sau mỗi mùa trăng, người đi bên anh vẫn là em.\nGiữa bao nhiêu đêm rộng, gặp được em đã là một điều đẹp.`
 
 Optional CTA: “Hẹn em một buổi đi chơi”.
 
 ## Art direction
 
 - Palette: night `#080B24`, moon gold `#F6D88B`, cloud violet `#8A78B4`, lantern coral `#D9795C`.
-- Soft low-poly diorama with warm lunar lighting. Cuội and Hằng are guides; the couple’s story stays central.
+- Cinematic semi-realistic storybook 3D with warm lunar lighting, as defined in the [art contract](true-3d-art-contract.md). Cuội and Hằng are guides; the couple’s story stays central.
 - Be Vietnam Pro for Vietnamese body copy; Noto Serif Display for romantic headings, self-host if license/size permit.
-- Scroll transition from scene 4 to 5 is the hero moment: lantern light spirals into a moon ring, which opens into memory photos.
+- Scroll transition from scene 4 to 5 is the hero moment: lantern light spirals into a moon ring, then settles into a quiet spoken passage.
 - Use HTML text overlays for editable/accessible copy. Audio stays opt-in.
 
 ## Technical direction
 
-Vite + TypeScript + Three.js static application, GitHub Pages deployment. Use a local progress-to-scene timeline inspired by scroll-world. Review upstream source/license before copying any code. Prefer locally generated original assets; no paid Monid/Higgsfield services. Public repo starts with clearly marked placeholders; add personal photos only when deliberately supplied.
+Vite + TypeScript + Three.js static application, GitHub Pages deployment. Use a local progress-to-scene timeline inspired by scroll-world. Review upstream source/license before copying any code. Prefer locally generated original assets; no paid Monid/Higgsfield services. The default gift keeps its memory chapter purely typographic and carries no photo placeholders.
 
 ## Personalization slots
 
-`[TÊN EM]`, `[TÊN ANH]`, `[BIỆT DANH]`, `[ẢNH KỶ NIỆM 01..03]`, `[NGÀY KỶ NIỆM]`, `[ĐỊA ĐIỂM]`, `[CÂU CHỈ HAI NGƯỜI HIỂU]`.
+No name slots are required in the default gift copy; the letter opens with “Gửi em”.
 
 ## Visual and interaction guardrails
 

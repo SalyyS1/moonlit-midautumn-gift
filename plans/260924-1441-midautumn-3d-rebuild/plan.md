@@ -1,7 +1,8 @@
 ---
 title: "Đêm trăng chỉ có hai đứa mình — true 3D rebuild"
 description: "Thay prototype primitive bằng thế giới 3D GLB có camera rail liên tục, animation authored và sáu cảnh Trung Thu không snap layer."
-status: pending
+status: in-progress
+branch: rebuild/true-3d-rail
 priority: P1
 effort: "8-12 ngày làm việc"
 tags: [threejs, blender, glb, animation, scroll-world, github-pages]
@@ -9,6 +10,12 @@ created: 2026-09-24
 ---
 
 # Đêm trăng chỉ có hai đứa mình — true 3D rebuild
+
+## Execution checkpoint — 2026-09-25
+
+**In progress; no rebuild release or visual approval.** The source, canonical Blender export, local integration and fallback checks have advanced. Human review of the semi-realistic character target, missing storyboard actions and final target-desktop performance remain open. The incoming working tree already contained the full world before the required slice gate; that sequence is recorded as a deviation, not accepted retroactively.
+
+[Execution report](reports/pm-260925-1440-rebuild-progress.md) separates current evidence from remaining intent. Phase checkboxes below are scoped to that evidence; local success is not remote CI or deployed-site proof.
 
 ## Overview
 
@@ -30,8 +37,8 @@ Nếu vertical slice GLB chưa đạt độ mượt thị giác của reference 
 
 ## Công nghệ và quy ước
 
-- **Authoring:** Blender 4.x, đơn vị mét, trục +Y lên, origin nhân vật ở chân, nguồn `.blend` và script Python nằm trong `art/blender/`.
-- **Runtime:** Vite + TypeScript + Three.js WebGL. Dùng `GLTFLoader`, `AnimationMixer`, `CatmullRomCurve3`, `DRACOLoader`/Meshopt sau khi bản uncompressed đã đạt chất lượng.
+- **Authoring:** Blender 4.x, đơn vị mét; nguồn Z-up export sang glTF Y-up. [Nguồn authoring](../../art/blender/README.md) giữ quy ước trục và export.
+- **Runtime:** Vite + TypeScript + Three.js WebGL. Rail hiện tại dùng cubic Hermite trong authored story time; lý do chọn nằm ở [phase camera](phase-03-continuous-camera-rail-and-runtime-rewrite.md). Draco/Meshopt chỉ là lựa chọn có điều kiện sau đo đạc.
 - **Asset format:** GLB nội bộ; texture Principled PBR, baked AO/normal/roughness; KTX2/WebP và Draco/Meshopt là bước tối ưu sau visual gate. Không runtime CDN.
 - **Camera:** position rail + look-at rail + FOV/roll knots; nội suy C1, slerp quaternion, exponential damping theo delta time.
 - **Timeline:** scroll chỉ tạo `targetProgress`; RAF damp đến `currentProgress`, evaluate camera/animation từ absolute progress. Không tích lũy delta và không đổi `visible` ở ranh giới chapter.
@@ -40,7 +47,9 @@ Nếu vertical slice GLB chưa đạt độ mượt thị giác của reference 
 
 ## World layout và storyboard
 
-| Pod | Nội dung | Camera move | Animation chính |
+Đây là mục tiêu storyboard, không phải danh sách animation đã hoàn tất. Bảy điểm dừng dùng sáu pod; Cuội và Hằng cùng một pod vườn. Clip thực tế nằm trong [manifest](../../public/assets/manifest.json); phần còn thiếu được ghi trong [execution report](reports/pm-260925-1440-rebuild-progress.md).
+
+| Điểm dừng | Nội dung | Camera move | Animation chính |
 |---|---|---|---|
 | 0 | Trăng ngoài không gian | crane nhẹ rồi dive vào mặt trăng | mây trôi, sao twinkle, halo thở |
 | 1 | Cổng cung trăng | xuyên qua cổng và đèn treo | cửa rung nhẹ, đèn sway |
@@ -54,19 +63,9 @@ Khoảng cách pod tối thiểu 2–4m theo hướng rail; mọi pod có foregr
 
 ## Module boundaries
 
-```text
-src/scene/ScrollWorldRuntime.ts  lifecycle, RAF, resize, renderer
-src/scene/CameraRail.ts           rail knots, C1 interpolation, look-ahead
-src/scene/AssetLoader.ts          manifest, GLTFLoader, decoders, progress/errors
-src/scene/SceneRegistry.ts        pod roots, bounds, placement validation
-src/scene/AnimationDirector.ts    AnimationMixer actions and crossfades
-src/scene/MotionMixer.ts          wind/sway/twinkle deterministic secondary motion
-src/scene/lighting.ts             key/fill/rim, fog, bloom quality tiers
-src/scene/manifest.ts             typed manifest and timeline metadata
-src/scene/index.ts                stable create/update/dispose facade
-```
+[Scene facade](../../src/scene/index.ts) là điểm vào ứng dụng. [Runtime](../../src/scene/ScrollWorldRuntime.ts) giữ lifecycle; [rail](../../src/scene/CameraRail.ts) và [camera sheet](../../src/scene/camera-sheet.ts) giữ đường đi. Asset contract thuộc [manifest](../../public/assets/manifest.json), [loader](../../src/scene/AssetLoader.ts) và [registry](../../src/scene/SceneRegistry.ts). Các phase liên quan dẫn đến owner của animation, ánh sáng và UI.
 
-`main.ts` keeps the current DOM story API and only talks to `setTargetProgress`. `MoonlitSceneRuntime.ts` is not patched further; it is either moved to a clearly named procedural fallback or removed after the GLB vertical slice passes.
+[ProceduralSceneRuntime](../../src/scene/ProceduralSceneRuntime.ts) giữ nguồn rollback. [MoonlitSceneRuntime](../../src/scene/MoonlitSceneRuntime.ts) là compatibility entry point, không phải bản procedural cũ.
 
 ## Quality gates
 
@@ -78,23 +77,23 @@ src/scene/index.ts                stable create/update/dispose facade
 
 ## Phases
 
-| # | Phase | Depends on | Result |
-|---|---|---|---|
-| 1 | [Scope freeze and visual contract](./phase-01-start.md) | — | camera knots, style contract, budgets, feature flag |
-| 2 | [Blender 3D asset production](./phase-02-blender-3d-asset-production.md) | 1 | authored six-pod world, rigged Cuội/Hằng, source `.blend` |
-| 3 | [Continuous camera rail and runtime rewrite](./phase-03-continuous-camera-rail-and-runtime-rewrite.md) | 1 | no-snap camera/timeline skeleton |
-| 4 | [GLB loading and scene registry](./phase-04-glb-loading-and-scene-registry.md) | 2, 3 | validated local assets, fallback loading |
-| 5 | [Animation, lighting and post effects](./phase-05-animation-lighting-and-post-effects.md) | 4 | authored actions, matte PBR, restrained glow |
-| 6 | [Story UI and resilient fallback](./phase-06-story-ui-and-resilient-fallback.md) | 3 | copy, letter, accessibility, no-WebGL path |
-| 7 | [Validation and Pages release](./phase-07-validation-and-pages-release.md) | 4, 5, 6 | performance evidence, public deployment |
+| # | Phase | Depends on | Result | Status |
+|---|---|---|---|---|
+| 1 | [Scope freeze and visual contract](./phase-01-start.md) | — | camera knots, style contract, budgets, feature flag | in-progress |
+| 2 | [Blender 3D asset production](./phase-02-blender-3d-asset-production.md) | 1 | authored six-pod world, rigged Cuội/Hằng, source `.blend` | in-progress |
+| 3 | [Continuous camera rail and runtime rewrite](./phase-03-continuous-camera-rail-and-runtime-rewrite.md) | 1 | no-snap camera/timeline skeleton | in-progress |
+| 4 | [GLB loading and scene registry](./phase-04-glb-loading-and-scene-registry.md) | 2, 3 | validated local assets, fallback loading | completed (local integration) |
+| 5 | [Animation, lighting and post effects](./phase-05-animation-lighting-and-post-effects.md) | 4 | authored actions, matte PBR, restrained glow | in-progress |
+| 6 | [Story UI and resilient fallback](./phase-06-story-ui-and-resilient-fallback.md) | 3 | copy, letter, accessibility, no-WebGL path | completed (local integration) |
+| 7 | [Validation and Pages release](./phase-07-validation-and-pages-release.md) | 4, 5, 6 | performance evidence, public deployment | in-progress |
 
 ## Success criteria
 
-- [ ] Sáu pod là asset GLB authored, không còn scene chính bằng primitive procedural.
-- [ ] Cuộn xuôi/ngược 10 lần cho cùng một trạng thái; không `visible`/opacity swap theo chapter.
-- [ ] Camera rail có vị trí và hướng liên tục; target/look-at không nhảy tại seam.
+- [x] Sáu pod là asset GLB authored, không còn scene chính bằng primitive procedural.
+- [x] Cuộn xuôi/ngược 10 lần cho cùng một trạng thái; không `visible`/opacity swap theo chapter.
+- [x] Camera rail có vị trí và hướng liên tục; target/look-at không nhảy tại seam.
 - [ ] Cuội và Hằng có silhouette, vật liệu, rig và ít nhất `Idle` + một gesture/interaction clip; không còn nhân vật là các khối ghép đơn giản.
-- [ ] Có ít nhất sáu subtree animation nhìn thấy khi dừng scroll.
+- [x] Có ít nhất sáu subtree animation nhìn thấy khi dừng scroll.
 - [ ] `npm run typecheck`, `npm test`, `npm run build`, asset validator và manual Chromium matrix pass.
 - [ ] GitHub Pages trả HTTP 200, không có external asset URL, fallback và letter vẫn dùng được.
 

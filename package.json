@@ -5,9 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "build:world": "node scripts/rebuild-world.mjs",
+    "build:blockout": "node scripts/build-world-glb.mjs --blockout",
     "build": "tsc --noEmit && vite build",
     "typecheck": "tsc --noEmit",
-    "test": "node scripts/smoke-test.mjs",
+    "validate:assets": "node scripts/validate-assets.mjs",
+    "test": "node scripts/smoke-test.mjs && node --test scripts/test-runtime.mjs",
+    "test:browser": "node scripts/capture-progress.mjs",
+    "test:view-mode": "node scripts/test-view-mode.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

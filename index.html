@@ -3,17 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080b24" />
+    <meta name="theme-color" content="#10131f" />
     <meta name="description" content="Đêm trăng chỉ có hai đứa mình — một món quà Trung Thu nhỏ." />
     <title>Đêm trăng chỉ có hai đứa mình</title>
+    <link rel="stylesheet" href="/src/styles.css" />
   </head>
-  <body>
-    <a class="skip-link" href="#story">Bỏ qua phần chuyển động</a>
+  <body class="is-readable">
+    <a class="skip-link" href="#static-story" id="skip-link">Bỏ qua phần chuyển động</a>
     <div id="app">
       <canvas id="moon-canvas" aria-hidden="true"></canvas>
-      <div class="webgl-fallback" id="webgl-fallback" hidden>
-        <p>Thiết bị này không bật được chuyển động 3D.</p>
-        <p>Bạn vẫn có thể đọc trọn câu chuyện và mở lá thư ở cuối trang.</p>
+      <img class="scene-poster" id="scene-poster" src="%BASE_URL%assets/posters/scene-00.webp" width="1600" height="900" alt="" aria-hidden="true" fetchpriority="high" />
+      <div class="world-status" id="world-status" role="status" aria-live="polite" hidden>
+        <span class="status-mark" aria-hidden="true">✦</span><span id="world-status-text">Đang mở cung trăng…</span>
       </div>
       <div class="grain" aria-hidden="true"></div>
       <header class="topbar">
@@ -23,43 +24,84 @@
         </a>
         <div class="top-actions">
           <span class="progress-readout" id="progress-readout">01 / 06</span>
-          <button class="sound-button" id="sound-button" type="button" aria-pressed="false">Âm thanh tắt</button>
+          <button class="view-mode-button" id="view-mode-button" type="button" hidden>Bật 3D</button>
+          <button class="sound-button" id="sound-button" type="button" aria-pressed="false" hidden>Âm thanh tắt</button>
         </div>
       </header>
+
       <main id="story" tabindex="-1">
         <div class="story-track" id="story-track" aria-hidden="true"></div>
-        <section class="copy-layer" aria-live="polite">
+        <section class="copy-layer" aria-live="polite" aria-atomic="true">
           <div class="chapter-copy" id="chapter-copy"></div>
           <div class="scroll-cue" id="scroll-cue"><span>cuộn để bay vào đêm trăng</span><i aria-hidden="true"></i></div>
         </section>
         <nav class="chapter-nav" id="chapter-nav" aria-label="Các chương trong câu chuyện"></nav>
-        <noscript>
-          <div class="noscript-story">
-            <h1>Đêm trăng chỉ có hai đứa mình</h1>
-            <p>Một món quà Trung Thu nhỏ dành cho người anh thương.</p>
-            <ol>
-              <li><strong>Trăng gọi tên em.</strong> Tối nay, anh muốn đưa em đến một nơi thật đặc biệt.</li>
-              <li><strong>Cánh cửa cung trăng.</strong> Hãy đi theo ánh sáng nhé.</li>
-              <li><strong>Cuội và Hằng.</strong> Còn anh có một người anh luôn muốn ở bên.</li>
-              <li><strong>Rước đèn cùng nhau.</strong> Miễn là tay mình vẫn tìm thấy tay nhau.</li>
-              <li><strong>Những điều anh nhớ.</strong> Thay những khung ảnh bằng câu chuyện của hai đứa mình.</li>
-              <li><strong>Lời hẹn dưới trăng.</strong> Chúc em một mùa Trung Thu thật dịu dàng.</li>
-            </ol>
-            <p>Gửi [tên em], anh không cần một cung trăng thật. Chỉ cần mỗi mùa trăng sau này, người đi cạnh anh vẫn là em.</p>
+
+        <section class="static-story" id="static-story" tabindex="-1" aria-labelledby="static-title">
+          <p class="static-kicker">một đêm thu dành riêng cho hai đứa mình</p>
+          <h1 id="static-title">Đêm trăng chỉ có hai đứa mình</h1>
+          <p class="static-intro">Một chuyến đi chậm qua cung trăng, nơi mỗi ánh đèn giữ lại một điều muốn nói.</p>
+          <div class="webgl-fallback" id="webgl-fallback" role="status" hidden>
+            <p class="fallback-kicker">Chế độ đọc</p>
+            <p id="view-mode-message"></p>
+            <button class="enter-3d-button" id="enter-3d-button" type="button" hidden>Bật trải nghiệm 3D <span aria-hidden="true">↗</span></button>
           </div>
-        </noscript>
+          <!-- Keep this complete HTML story in sync with src/content.ts for readers without JavaScript. -->
+          <div class="static-chapters" id="static-chapters">
+            <article class="static-chapter" id="static-moon">
+              <p class="static-index">01 / 06 · 01 · mở cửa đêm thu</p>
+              <h2>Tối nay, anh muốn đưa em đến một nơi thật đặc biệt.</h2>
+              <p class="static-body">Ở đó có ánh trăng, có những chiếc đèn lồng, và có một điều nhỏ xíu anh muốn nói với em.</p>
+            </article>
+            <article class="static-chapter" id="static-gate">
+              <p class="static-index">02 / 06 · 02 · theo ánh sáng</p>
+              <h2>Nếu em nghe thấy tiếng chuông, hãy đi theo ánh sáng nhé.</h2>
+              <p class="static-body">Sau cánh cửa này là một khu vườn chỉ mở vào những đêm rằm.</p>
+            </article>
+            <article class="static-chapter" id="static-cuoi-hang">
+              <p class="static-index">03 / 06 · 03 · người kể chuyện</p>
+              <h2>Cuội có cây đa. Chị Hằng có cung trăng.</h2>
+              <p class="static-body">Còn anh có một người anh luôn muốn ở bên, qua thật nhiều mùa trăng nữa.</p>
+            </article>
+            <article class="static-chapter" id="static-lanterns">
+              <p class="static-index">04 / 06 · 04 · con đường có hai người</p>
+              <h2>Anh muốn cùng em đi qua thật nhiều mùa trăng nữa.</h2>
+              <p class="static-body">Chậm một chút cũng được. Miễn là tay mình vẫn tìm thấy tay nhau.</p>
+            </article>
+            <article class="static-chapter" id="static-memories">
+              <p class="static-index">05 / 06 · 05 · chỗ dành cho kỷ niệm</p>
+              <h2>Mỗi ánh đèn là một điều anh muốn giữ lại.</h2>
+              <p class="static-body">Thay những khung ảnh này bằng câu chuyện của hai đứa mình nhé.</p>
+            </article>
+            <article class="static-chapter" id="static-letter">
+              <p class="static-index">06 / 06 · 06 · gửi người anh thương</p>
+              <h2>Chúc em một mùa Trung Thu thật dịu dàng.</h2>
+              <p class="static-body">Cảm ơn em vì đã xuất hiện. Lá thư này là phần cuối của chuyến bay, nhưng không phải phần cuối của câu chuyện.</p>
+              <button class="static-letter-button" id="static-letter-button" type="button" hidden>Mở lá thư <span aria-hidden="true">↗</span></button>
+              <section class="static-letter-content" aria-labelledby="static-letter-title">
+              <h3 id="static-letter-title">Gửi em</h3>
+                <p>Anh không cần một cung trăng thật.</p>
+              <p>Chỉ cần sau mỗi mùa trăng, người đi bên anh vẫn là em.</p>
+              <p>Giữa bao nhiêu đêm rộng, gặp được em đã là một điều đẹp.</p>
+              <p>Nếu đời là một vở kịch dài, anh mong được cùng em đi qua những hồi dịu dàng nhất.</p>
+              <p>— anh</p>
+              </section>
+            </article>
+          </div>
+        </section>
       </main>
+
       <div class="letter-backdrop" id="letter-backdrop" hidden>
         <section class="letter-modal" role="dialog" aria-modal="true" aria-labelledby="letter-title">
           <button class="letter-close" id="letter-close" type="button" aria-label="Đóng lá thư">×</button>
           <p class="letter-kicker">thư gửi từ cung trăng</p>
-          <h2 id="letter-title">Gửi [tên em],</h2>
+          <h2 id="letter-title">Gửi em</h2>
           <div class="letter-body">
             <p>Anh không cần một cung trăng thật.</p>
             <p>Chỉ cần mỗi mùa trăng sau này, người đi cạnh anh vẫn là em.</p>
             <p>Cảm ơn em vì đã xuất hiện trong cuộc đời anh.</p>
           </div>
-          <p class="letter-sign">— [tên anh]</p>
+          <p class="letter-sign">— anh</p>
           <button class="letter-action" id="letter-action" type="button">Giữ lời hẹn này nhé</button>
         </section>
       </div>

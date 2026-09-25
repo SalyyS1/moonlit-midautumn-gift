@@ -1,13 +1,21 @@
 ---
 phase: 7
 title: "Validation and Pages release"
-status: pending
+status: in-progress
 priority: P1
 effort: "1.5 days"
 dependencies: [4, 5, 6]
 ---
 
 # Phase 7: Validation and Pages release
+
+## Execution checkpoint — 2026-09-25
+
+Final local typecheck, repository-base build, asset validation and runtime tests passed. The candidate browser run measured 3,152.9 ms to first meaningful 3D and 59.81 FPS; two frames exceeded 33 ms. Loading and strict frame-time acceptance still fail. The targeted lifecycle harness rerun passed. A typography-only followup refreshed all progress screenshots and verified Vietnamese heading glyphs; typecheck and the production build passed again. These checks do not change the failed performance gates or establish release acceptance.
+
+[Browser verification](../../scripts/capture-progress.mjs) now has a strict `--release` option. Its default mode records failed performance gates without treating them as a functional-check failure. The [Pages workflow](../../.github/workflows/deploy-pages.yml) includes asset validation, but this rebuild has not been pushed, run in remote CI or deployed. No live-site claim is made here.
+
+Human visual approval is also outstanding. The [execution report](reports/pm-260925-1440-rebuild-progress.md) records exact evidence scope and remaining gates.
 
 ## Overview
 
@@ -19,15 +27,15 @@ Prove that the rebuilt scene is smooth, visually continuous and deployable befor
 - Performance: 1440x900 and 1920x1080 desktop captures, 55+ FPS target after warm-up, no frame >33ms in a 10s idle sample, initial payload <=25MB.
 - Release: public repo contains no secrets/private photos, all asset URLs local, workflow deploys only successful builds, rollback is one revert.
 
-## Architecture
+## Architecture (target)
 
 Add `scripts/validate-assets.mjs` to CI before Vite build. Use a production preview or Chromium runner to sample progress at `0,.05,.1,...,1`, forward/reverse ten times, pause-scroll at every pod and assert no camera NaN, console errors, missing GLB or unexpected external request. Keep the last known-good Pages artifact available until the new workflow succeeds.
 
 ## Related Code Files
 
-- Create: `scripts/validate-assets.mjs`, `scripts/capture-progress.mjs`, `docs/true-3d-validation-report.md`.
-- Modify: `scripts/smoke-test.mjs`, `.github/workflows/deploy-pages.yml`, `README.md`, `docs/release-and-rollback.md`.
-- Inspect: `dist/` file sizes and generated asset paths; do not commit temporary captures unless explicitly useful.
+- [Asset validator](../../scripts/validate-assets.mjs), [runtime tests](../../scripts/test-runtime.mjs), [browser captures](../../scripts/capture-progress.mjs).
+- [Pages workflow](../../.github/workflows/deploy-pages.yml), [release guide](../../docs/release-and-rollback.md).
+- [Scoped execution report](reports/pm-260925-1440-rebuild-progress.md); generated captures remain under the runner's ignored work directory.
 
 ## Implementation Steps
 
@@ -48,4 +56,3 @@ Add `scripts/validate-assets.mjs` to CI before Vite build. Use a production prev
 ## Risk Assessment
 
 If the GLB path still fails the visual gate, do not publish a half-polished rebuild. Keep the current main release live, fix the model/rail, or enable the documented Blender-rendered video hybrid from the same world asset. A green build alone is not visual acceptance.
-

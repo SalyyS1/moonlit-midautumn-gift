@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "generatedBy": "art/blender/build-environment.py + scripts/write-world-manifest.mjs",
+  "world": {
+    "id": "moonlit-world",
+    "url": "assets/models/moonlit-world.glb",
+    "preload": true,
+    "bytes": 6705664,
+    "clips": [
+      "CUOI_Idle",
+      "CUOI_Look",
+      "CUOI_SeatIdle",
+      "CUOI_SEATED_SeatIdle",
+      "HANG_Dance",
+      "HANG_Idle",
+      "HANG_Wave",
+      "THO_RabbitA_Paw_0_Pound",
+      "THO_RabbitA_Paw_1_Pound",
+      "THO_RabbitA_Pound",
+      "THO_RabbitB_Paw_0_Pound",
+      "THO_RabbitB_Paw_1_Pound",
+      "THO_RabbitB_Pound",
+      "FIRE_Flame_0_Flicker",
+      "FIRE_Flame_1_Flicker",
+      "FIRE_Flame_2_Flicker",
+      "LAN_Dance",
+      "LANTERN_-3.40_45.00_Sway",
+      "LANTERN_-3.40_45.00_Flicker",
+      "LANTERN_-3.40_48.30_Sway",
+      "LANTERN_-3.40_48.30_Flicker",
+      "LANTERN_-3.40_51.60_Sway",
+      "LANTERN_-3.40_51.60_Flicker",
+      "LANTERN_-3.40_54.90_Sway",
+      "LANTERN_-3.40_54.90_Flicker",
+      "LANTERN_-3.40_58.20_Sway",
+      "LANTERN_-3.40_58.20_Flicker",
+      "LANTERN_-3.40_61.50_Sway",
+      "LANTERN_-3.40_61.50_Flicker",
+      "LANTERN_-3.40_64.80_Sway",
+      "LANTERN_-3.40_64.80_Flicker",
+      "LANTERN_-3.40_68.10_Sway",
+      "LANTERN_-3.40_68.10_Flicker",
+      "LANTERN_3.40_46.20_Sway",
+      "LANTERN_3.40_46.20_Flicker",
+      "LANTERN_3.40_49.50_Sway",
+      "LANTERN_3.40_49.50_Flicker",
+      "LANTERN_3.40_52.80_Sway",
+      "LANTERN_3.40_52.80_Flicker",
+      "LANTERN_3.40_56.10_Sway",
+      "LANTERN_3.40_56.10_Flicker",
+      "LANTERN_3.40_59.40_Sway",
+      "LANTERN_3.40_59.40_Flicker",
+      "LANTERN_3.40_62.70_Sway",
+      "LANTERN_3.40_62.70_Flicker",
+      "LANTERN_3.40_66.00_Sway",
+      "LANTERN_3.40_66.00_Flicker",
+      "LANTERN_3.40_69.30_Sway",
+      "LANTERN_3.40_69.30_Flicker",
+      "LANTERN_-0.00_94.50_Sway",
+      "LANTERN_-0.00_94.50_Flicker",
+      "LANTERN_-3.89_103.89_Sway",
+      "LANTERN_-3.89_103.89_Flicker",
+      "LANTERN_-3.89_96.11_Sway",
+      "LANTERN_-3.89_96.11_Flicker",
+      "LANTERN_-5.50_100.00_Sway",
+      "LANTERN_-5.50_100.00_Flicker",
+      "LANTERN_0.00_105.50_Sway",
+      "LANTERN_0.00_105.50_Flicker",
+      "LANTERN_3.89_103.89_Sway",
+      "LANTERN_3.89_103.89_Flicker",
+      "LANTERN_3.89_96.11_Sway",
+      "LANTERN_3.89_96.11_Flicker",
+      "LANTERN_5.50_100.00_Sway",
+      "LANTERN_5.50_100.00_Flicker",
+      "LetterRise",
+      "LetterOpen"
+    ],
+    "pods": [
+      "pod_moon_approach",
+      "pod_lunar_gate",
+      "pod_cuoi_hang",
+      "pod_lantern_street",
+      "pod_memories",
+      "pod_letter_stage"
+    ],
+    "bounds": {
+      "pod_moon_approach": {
+        "min": [
+          -8.59834735095501,
+          4,
+          0
+        ],
+        "max": [
+          9.224662005901337,
+          20,
+          16.000004768371582
+        ]
+      },
+      "pod_lunar_gate": {
+        "min": [
+          -4.925043106079102,
+          0,
+          -20.731908798217773
+        ],
+        "max": [
+          4.925043106079102,
+          5.832887172698975,
+          -15.268092155456543
+        ]
+      },
+      "pod_cuoi_hang": {
+        "min": [
+          -7.599999904632568,
+          -0.3007340431213379,
+          -41.299999952316284
+        ],
+        "max": [
+          9.3937166929245,
+          10.266320943832397,
+          -28.737187445163727
+        ]
+      },
+      "pod_lantern_street": {
+        "min": [
+          -3.829926533586765,
+          0.2749999910593033,
+          -69.68760305643082
+        ],
+        "max": [
+          3.8060417490144958,
+          5.40399014849861,
+          -43.89999997615814
+        ]
+      },
+      "pod_memories": {
+        "min": [
+          -6.2126336097717285,
+          0,
+          -80.60000002384186
+        ],
+        "max": [
+          6.2126336097717285,
+          8.503312110900879,
+          -73.39999997615814
+        ]
+      },
+      "pod_letter_stage": {
+        "min": [
+          -7.199999809265137,
+          0,
+          -107.19999980926514
+        ],
+        "max": [
+          7.199999809265137,
+          6.334814242755339,
+          -92.80000019073486
+        ]
+      }
+    },
+    "license": {
+      "type": "original",
+      "source": "art/blender/moonlit-world.blend"
+    },
+    "textures": [
+      {
+        "name": "Moon_Original_Normal",
+        "mimeType": "image/png",
+        "embedded": true
+      },
+      {
+        "name": "Moon_Original_Albedo",
+        "mimeType": "image/png",
+        "embedded": true
+      }
+    ],
+    "posters": [
+      "assets/posters/scene-00.webp",
+      "assets/posters/scene-01.webp",
+      "assets/posters/scene-02.webp",
+      "assets/posters/scene-03.webp",
+      "assets/posters/scene-04.webp",
+      "assets/posters/scene-05.webp",
+      "assets/posters/scene-06.webp"
+    ],
+    "beats": [
+      {
+        "id": "moon-arrival",
+        "chapterId": "moon",
+        "at": 0,
+        "phase": "entrance",
+        "caption": "Trăng rằm mở lối"
+      },
+      {
+        "id": "gate-glow",
+        "chapterId": "gate",
+        "at": 0.14,
+        "phase": "hold",
+        "caption": "Cổng trời đón bước chân"
+      },
+      {
+        "id": "cuoi-seat",
+        "chapterId": "cuoi-hang",
+        "at": 0.28,
+        "phase": "entrance",
+        "caption": "Chú Cuội ngồi bên gốc đa",
+        "clip": "CUOI_SeatIdle"
+      },
+      {
+        "id": "rabbit-pounding",
+        "chapterId": "cuoi-hang",
+        "at": 0.34,
+        "phase": "hold",
+        "caption": "Thỏ con giã bánh giầy",
+        "clip": "THO_RabbitA_Pound"
+      },
+      {
+        "id": "hang-dance",
+        "chapterId": "cuoi-hang",
+        "at": 0.43,
+        "phase": "exit",
+        "caption": "Chị Hằng múa dưới trăng",
+        "clip": "HANG_Dance"
+      },
+      {
+        "id": "lantern-entrance",
+        "chapterId": "lanterns",
+        "at": 0.5,
+        "phase": "entrance",
+        "caption": "Phố đèn lồng rực rỡ"
+      },
+      {
+        "id": "fire-hold",
+        "chapterId": "lanterns",
+        "at": 0.56,
+        "phase": "hold",
+        "caption": "Bếp lửa reo vui",
+        "clip": "FIRE_Flame_0_Flicker"
+      },
+      {
+        "id": "lan-dance",
+        "chapterId": "lanterns",
+        "at": 0.63,
+        "phase": "hold",
+        "caption": "Lân sư tử nhảy nhịp trống",
+        "clip": "LAN_Dance"
+      },
+      {
+        "id": "lantern-exit",
+        "chapterId": "lanterns",
+        "at": 0.68,
+        "phase": "exit",
+        "caption": "Đèn đưa ta qua cầu"
+      },
+      {
+        "id": "memory-approach",
+        "chapterId": "memories",
+        "at": 0.72,
+        "phase": "entrance",
+        "caption": "Khung ký ức thân thương"
+      },
+      {
+        "id": "memory-hold",
+        "chapterId": "memories",
+        "at": 0.78,
+        "phase": "hold",
+        "caption": "Những mùa trăng ở lại"
+      },
+      {
+        "id": "letter-rise",
+        "chapterId": "letter",
+        "at": 0.86,
+        "phase": "entrance",
+        "caption": "Phong thư trồi lên từ đài sen",
+        "clip": "LetterRise"
+      },
+      {
+        "id": "letter-open",
+        "chapterId": "letter",
+        "at": 0.93,
+        "phase": "hold",
+        "caption": "Lời thương tự mở ra",
+        "clip": "LetterOpen"
+      },
+      {
+        "id": "letter-rest",
+        "chapterId": "letter",
+        "at": 1,
+        "phase": "exit",
+        "caption": "Chúc một mùa đoàn viên"
+      }
+    ]
+  },
+  "timeline": [
+    {
+      "id": "moon",
+      "at": 0
+    },
+    {
+      "id": "gate",
+      "at": 0.17
+    },
+    {
+      "id": "cuoi-hang",
+      "at": 0.34
+    },
+    {
+      "id": "lanterns",
+      "at": 0.52
+    },
+    {
+      "id": "memories",
+      "at": 0.72
+    },
+    {
+      "id": "letter",
+      "at": 0.9
+    }
+  ]
+}

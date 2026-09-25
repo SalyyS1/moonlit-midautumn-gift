@@ -1,13 +1,21 @@
 ---
 phase: 2
 title: "Blender 3D asset production"
-status: pending
+status: in-progress
 priority: P1
 effort: "4-6 days"
 dependencies: [1]
 ---
 
 # Phase 2: Blender 3D asset production
+
+## Execution checkpoint — 2026-09-25
+
+The [saved Blender source](../../art/blender/moonlit-world.blend) and [authoring scripts](../../art/blender/README.md) produce the canonical [GLB](../../public/assets/models/moonlit-world.glb). The [manifest](../../public/assets/manifest.json) and [validator](../../scripts/validate-assets.mjs) establish embedded original textures, measured separated bounds, skins and authored character actions. Poster exports are present.
+
+These mechanical checks do not approve the semi-realistic target. The latest character proportions remain subject to wide/mid/close visual review. `Walk`, `HoldLantern`, `CloudDrift` and the storyboard's unfolding memory frames are not completed actions. Do not mark the phase complete merely because the current clip manifest validates.
+
+The incoming world had already expanded beyond the vertical slice before approval; see the [execution report](reports/pm-260925-1440-rebuild-progress.md).
 
 ## Overview
 
@@ -19,9 +27,9 @@ Build the actual 3D world instead of extending procedural primitives. The first 
 - Character quality: authored silhouette, face planes, hair, sleeves/arms, UVs, rig bones and at least two usable actions per character; no sphere-head/cylinder-body replacement in the final path.
 - Non-functional: Blender meters, origins at logical pivots, named nodes, baked AO/normal/roughness where useful, no hidden cameras/lights, no unlicensed copied character art.
 
-## Architecture
+## Architecture (target)
 
-Use `art/blender/midautumn_world.blend` as source of truth and `art/blender/build_world.py` for repeatable blockout/material/node naming. Export one coherent `public/assets/models/midautumn-world.glb` first so pod coordinates and rail are guaranteed to match. If the optimized payload breaches the budget, split by pod only after the single-file visual review. Keep source `.blend` outside `dist` but tracked if size permits; otherwise document its local archive path and keep the export manifest public.
+Use `art/blender/moonlit-world.blend` as source of truth and `art/blender/build-environment.py` for repeatable blockout/material/node naming. Export one coherent `public/assets/models/moonlit-world.glb` first so pod coordinates and rail are guaranteed to match. If the optimized payload breaches the budget, split by pod only after the single-file visual review. Keep source `.blend` outside `dist` but tracked if size permits; otherwise document its local archive path and keep the export manifest public.
 
 Suggested asset targets:
 
@@ -34,9 +42,9 @@ Suggested asset targets:
 
 ## Related Code Files
 
-- Create: `art/blender/midautumn_world.blend`, `art/blender/build_world.py`, `art/blender/export_world.py`, `public/assets/models/midautumn-world.glb`, `public/assets/posters/scene-00.webp` through `scene-06.webp`, `public/assets/manifest.json`.
-- Create/modify: `docs/asset-license-manifest.md`, `docs/true-3d-art-contract.md`.
-- Do not modify: runtime camera/loader until the vertical slice exports successfully.
+- [Authoring entry point](../../art/blender/build-environment.py), [saved source](../../art/blender/moonlit-world.blend) and [rebuild wrapper](../../scripts/rebuild-world.mjs).
+- [Canonical GLB](../../public/assets/models/moonlit-world.glb), [generated manifest](../../public/assets/manifest.json) and [manifest generator](../../scripts/write-world-manifest.mjs).
+- [Asset guide](../../docs/asset-guide.md) and [art contract](../../docs/true-3d-art-contract.md).
 
 ## Implementation Steps
 
@@ -50,10 +58,10 @@ Suggested asset targets:
 ## Success Criteria
 
 - [ ] Moon + Cuội/Hằng vertical slice looks coherent at wide, mid and close camera distances.
-- [ ] All final characters are authored GLB meshes with rig/animation clips, not runtime primitive replacements.
-- [ ] Node names and clip names match the manifest exactly; no missing texture or T-pose.
-- [ ] The full world has no coplanar pod roots or unexplained opaque overlap.
-- [ ] Source/license for every external texture/model is recorded; original models are marked as such.
+- [x] All final characters are authored GLB meshes with rig/animation clips, not runtime primitive replacements.
+- [x] Node names and clip names match the manifest exactly; no missing texture or T-pose.
+- [x] The full world has no coplanar pod roots or unexplained opaque overlap.
+- [x] Source/license for every external texture/model is recorded; original models are marked as such.
 
 ## Risk Assessment
 

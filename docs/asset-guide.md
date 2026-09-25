@@ -1,12 +1,15 @@
 # Asset guide
 
-The first public build intentionally uses procedural Three.js geometry and text placeholders. This keeps the repository small, reproducible, and safe to publish before personal photos are supplied.
+Use original, locally hosted assets so this personal gift remains reproducible without a paid service or a runtime CDN. Public deployment is deliberate publication: leave placeholders until the owner supplies photos and names intended for that audience.
 
-## Replace the memory cards
+## Where to edit
 
-1. Add three optimized images under `public/assets/memories/`.
-2. Replace the card materials in `src/scene/MoonlitSceneRuntime.ts` or add a typed image map in `src/content.ts`.
-3. Keep personal names, dates, and captions in `src/content.ts` and the letter body in `index.html`.
-4. Run `npm run typecheck`, `npm test`, and `npm run build` before committing.
+[Typed content](../src/content.ts) owns the editable story, letter and memory captions. Keep the [semantic HTML fallback](../index.html) aligned when personalizing, including its no-JavaScript letter.
 
-No runtime asset may depend on an external URL. Do not commit private photos until you intend them to be public.
+[Blender authoring guidance](../art/blender/README.md) points to the scene source and export command. Memory-frame artwork belongs to that authoring source; the content schema is not an image-upload interface. Adding personal photos requires an authored asset change and a new export.
+
+The [generated manifest](../public/assets/manifest.json) owns asset paths, source/license metadata, bounds and clip names. Change its [generator](../scripts/write-world-manifest.mjs) rather than hand-maintaining a second inventory.
+
+## Before sharing
+
+Use the [asset validator](../scripts/validate-assets.mjs) and [release guide](release-and-rollback.md). A valid export proves its mechanical contract; it does not approve the characters' art direction.
